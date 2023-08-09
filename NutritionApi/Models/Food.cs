@@ -10,11 +10,13 @@ public class Food
     public string? Id { get; set; }
 
     [BsonElement("Name")]
-    public string BookName { get; set; } = null!;
+    public string FoodName { get; set; } = null!;
 
-    public decimal Price { get; set; }
+    public decimal Kcal { get; set; }
 
-    public string Category { get; set; } = null!;
+    public string Carbs { get; set; } = null!;
 
-    public string Author { get; set; } = null!;
+    public string Protein { get; set; } = null!;
+
+    public string Fat { get; set; } = null!;
 }
