@@ -22,7 +22,7 @@ public class FoodController : ControllerBase
         return foods.ToList();
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("id/{id}")]
     public async Task<ActionResult<Food>> GetFood(string id)
     {
         var food = await nutritionService.Get(id);
@@ -31,5 +31,22 @@ public class FoodController : ControllerBase
             return NotFound();
 
         return food;
+    }
+
+    [HttpGet("name/{foodName}")]
+    public async Task<ActionResult<ICollection<Food>>> GetFoodByName(string foodName)
+    {
+        var foods = await nutritionService.SearchFoodsByName(foodName);
+
+        if (foods is null)
+            return NotFound();
+
+        return foods.ToList();
+    }
+
+    [HttpPost]
+    public async Task CreateFood(Food food)
+    {
+        await nutritionService.Create(food);
     }
 }

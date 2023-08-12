@@ -12,11 +12,11 @@ public class Food
     [BsonElement("Name")]
     public string FoodName { get; set; } = null!;
 
-    public decimal Kcal { get; set; }
+    public int Kcal { get; set; }
 
-    public string Carbs { get; set; } = null!;
+    public int Carbs { get; set; }
 
-    public string Protein { get; set; } = null!;
+    public int Protein { get; set; }
 
-    public string Fat { get; set; } = null!;
+    public int Fat { get; set; }
 }
