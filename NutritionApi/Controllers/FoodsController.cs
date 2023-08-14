@@ -18,14 +18,8 @@ public class FoodController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Food>>> GetFood()
     {
-        var testFoods = new List<Food>();
-        testFoods.Add(new Food()
-        {
-            FoodName = "Test",
-            Kcal = 123
-        });
-        //var foods = await nutritionService.Get();
-        return testFoods.ToList();
+        var foods = await nutritionService.Get();
+        return foods.ToList();
     }
 
     [HttpGet("id/{id}")]
