@@ -3,7 +3,12 @@ using NutritionApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<NutritionDatabaseSettings>(builder.Configuration.GetSection("NutritionDatabaseSettings"));
+builder.Services.Configure<NutritionDatabaseSettings>(options =>
+{
+    builder.Configuration.GetSection("NutritionDatabaseSettings");
+    options.ConnectionString = Environment.GetEnvironmentVariable("NUTRITIONDB_CONNECTIONSTRING");
+});
+
 builder.Services.AddSingleton<INutritionService, NutritionService>();
 
 builder.Services.AddControllers();
