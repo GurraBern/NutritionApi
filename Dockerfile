@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 as build-env
-WORKDIR /src
+WORKDIR /NutritionApi
 COPY NutritionApi/*.csproj .
 RUN dotnet restore
 COPY src .
