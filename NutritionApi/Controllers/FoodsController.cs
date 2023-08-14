@@ -24,8 +24,8 @@ public class FoodController : ControllerBase
             FoodName = "Test",
             Kcal = 123
         });
-        var foods = await nutritionService.Get();
-        return foods.ToList();
+        //var foods = await nutritionService.Get();
+        return testFoods.ToList();
     }
 
     [HttpGet("id/{id}")]
