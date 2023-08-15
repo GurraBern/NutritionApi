@@ -25,7 +25,12 @@ public class FoodController : ControllerBase
     [HttpGet("id/{id}")]
     public async Task<ActionResult<Food>> GetFood(string id)
     {
-        var food = await nutritionService.Get(id);
+        //var food = await nutritionService.Get(id);
+
+        var food = new Food()
+        {
+            FoodName = Environment.GetEnvironmentVariable("NUTRITIONDB_CONNECTIONSTRING")
+        };
 
         if (food is null)
             return NotFound();
