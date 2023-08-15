@@ -27,7 +27,7 @@ public class FoodController : ControllerBase
     {
         //var food = await nutritionService.Get(id);
 
-        //var test = Environment.GetEnvironmentVariable("NUTRITIONDB_CONNECTIONSTRING");
+        var test = Environment.GetEnvironmentVariable("NUTRITIONDB_CONNECTIONSTRING", EnvironmentVariableTarget.Process);
         //if (test != null)
         //{
         //    Console.WriteLine(test);
@@ -37,8 +37,8 @@ public class FoodController : ControllerBase
 
         var food = new Food()
         {
-            FoodName = "test",
-            Id = id
+            FoodName = test,
+            Id = id,
         };
 
         if (food is null)
