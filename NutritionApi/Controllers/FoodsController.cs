@@ -29,7 +29,8 @@ public class FoodController : ControllerBase
 
         var food = new Food()
         {
-            FoodName = "test"
+            FoodName = "test",
+            Id = id
         };
 
         if (food is null)
