@@ -29,7 +29,7 @@ public class FoodController : ControllerBase
 
         var food = new Food()
         {
-            FoodName = Environment.GetEnvironmentVariable("NUTRITIONDB_CONNECTIONSTRING")
+            FoodName = "test"
         };
 
         if (food is null)
