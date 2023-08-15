@@ -27,10 +27,12 @@ public class FoodController : ControllerBase
     {
         //var food = await nutritionService.Get(id);
 
+
+
         var food = new Food()
         {
             FoodName = "test",
-            Id = id
+            Id = Environment.GetEnvironmentVariable("NUTRITIONDB_CONNECTIONSTRING")
         };
 
         if (food is null)
