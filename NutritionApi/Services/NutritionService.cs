@@ -13,11 +13,8 @@ public class NutritionService : INutritionService
     public NutritionService(IOptions<NutritionDatabaseSettings> nutritionDatabaseSettings)
     {
         var mongoClient = new MongoClient(nutritionDatabaseSettings.Value.ConnectionString);
-
-        _foodCollection = mongoClient.GetDatabase("NutritionDb")
-            .GetCollection<Food>("Foods");
-
-        var mongoDatabase = mongoClient.GetDatabase("NutritionDb");
+        
+        var mongoDatabase = mongoClient.GetDatabase(nutritionDatabaseSettings.Value.DatabaseName);
 
         _foodCollection = mongoDatabase.GetCollection<Food>("Foods");
     }
