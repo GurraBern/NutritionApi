@@ -17,9 +17,16 @@ else
     builder.Services.Configure<NutritionDatabaseSettings>(builder.Configuration.GetSection("NutritionDatabaseSettings"));
 }
 
+builder.Logging
+    .ClearProviders()
+    .AddConsole();
+
 builder.Services.AddSingleton<INutritionService, NutritionService>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.ReturnHttpNotAcceptable = true;
+}).AddXmlDataContractSerializerFormatters();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
