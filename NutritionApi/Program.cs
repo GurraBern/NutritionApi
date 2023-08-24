@@ -23,10 +23,9 @@ builder.Logging
 
 builder.Services.AddSingleton<INutritionService, NutritionService>();
 
-builder.Services.AddControllers(options =>
-{
-    options.ReturnHttpNotAcceptable = true;
-}).AddXmlDataContractSerializerFormatters();
+builder.Services
+    .AddControllers()
+    .AddXmlDataContractSerializerFormatters();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

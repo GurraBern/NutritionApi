@@ -24,14 +24,11 @@ public class FoodController : ControllerBase
         {
             var foods = await nutritionService.Get();
 
-            if (!foods.Any())
-                return NotFound(foods.ToList());
-
             return Ok(foods);
         }
         catch (Exception ex)
         {
-            _logger.LogCritical("Could not get foods from service", ex);
+            _logger.LogCritical($"An exception occurred while retrieving food items.", ex);
             return StatusCode(500, "An error occurred while processing your request.");
         }
     }
@@ -64,9 +61,6 @@ public class FoodController : ControllerBase
         try
         {
             var foods = await nutritionService.SearchFoodsByName(foodName);
-
-            if (foods is null)
-                return NotFound();
 
             return Ok(foods);
         }
