@@ -8,20 +8,13 @@ namespace NutritionApi.Services;
 
 public class NutritionService : INutritionService
 {
-    private readonly IMongoCollection<Food> _foodCollection;
+    private readonly IMongoCollection<Food>? _foodCollection;
 
     public NutritionService(IOptions<NutritionDatabaseSettings> nutritionDatabaseSettings)
     {
         var mongoClient = new MongoClient(nutritionDatabaseSettings.Value.ConnectionString);
-
-        _foodCollection = mongoClient.GetDatabase(nutritionDatabaseSettings.Value.DatabaseName)
-            .GetCollection<Food>(nutritionDatabaseSettings.Value.NutritionCollectionName);
-
-        var mongoDatabase = mongoClient.GetDatabase(
-            nutritionDatabaseSettings.Value.DatabaseName);
-
-        _foodCollection = mongoDatabase.GetCollection<Food>(
-            nutritionDatabaseSettings.Value.NutritionCollectionName);
+        var mongoDatabase = mongoClient.GetDatabase(nutritionDatabaseSettings.Value.DatabaseName);
+        _foodCollection = mongoDatabase.GetCollection<Food>(nutritionDatabaseSettings.Value.NutritionCollectionName);
     }
 
     public async Task<IEnumerable<Food>> Get() =>
