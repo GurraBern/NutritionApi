@@ -19,9 +19,15 @@ builder.Services.Configure<NutritionDatabaseSettings>(options =>
     options.ConnectionString = Environment.GetEnvironmentVariable("NUTRITIONDB_CONNECTIONSTRING", EnvironmentVariableTarget.Process); ;
 });
 
+builder.Logging
+    .ClearProviders()
+    .AddConsole();
+
 builder.Services.AddSingleton<INutritionService, NutritionService>();
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddXmlDataContractSerializerFormatters();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
