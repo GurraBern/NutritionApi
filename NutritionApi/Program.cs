@@ -1,3 +1,6 @@
+using NutritionApi.Models;
+using NutritionApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var dbUrl = Environment.GetEnvironmentVariable("NUTRITIONDB_CONNECTIONSTRING", EnvironmentVariableTarget.Process);

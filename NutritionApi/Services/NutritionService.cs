@@ -1,5 +1,4 @@
-﻿using BookStoreApi.Models;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using NutritionApi.Models;

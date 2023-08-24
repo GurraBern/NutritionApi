@@ -1,4 +1,4 @@
-﻿namespace BookStoreApi.Models;
+﻿namespace NutritionApi.Models;
 
 public class NutritionDatabaseSettings
 {
