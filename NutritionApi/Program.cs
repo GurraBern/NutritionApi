@@ -16,11 +16,6 @@ else
 {
     builder.Services.Configure<NutritionDatabaseSettings>(builder.Configuration.GetSection("NutritionDatabaseSettings"));
 }
-builder.Services.Configure<NutritionDatabaseSettings>(options =>
-{
-    builder.Configuration.GetSection("NutritionDatabaseSettings");
-    options.ConnectionString = Environment.GetEnvironmentVariable("NUTRITIONDB_CONNECTIONSTRING", EnvironmentVariableTarget.Process); ;
-});
 
 builder.Logging
     .ClearProviders()
