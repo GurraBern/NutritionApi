@@ -55,18 +55,18 @@ public class FoodController : ControllerBase
         }
     }
 
-    [HttpGet("name/{foodName}")]
-    public async Task<ActionResult<ICollection<Food>>> GetFoodByName(string foodName)
+    [HttpGet("name/{name}")]
+    public async Task<ActionResult<ICollection<Food>>> GetFoodByName(string name)
     {
         try
         {
-            var foods = await nutritionService.SearchFoodsByName(foodName);
+            var foods = await nutritionService.SearchFoodsByName(name);
 
             return Ok(foods);
         }
         catch (Exception ex)
         {
-            _logger.LogCritical($"An exception occurred while retrieving food items with name {foodName}.", ex);
+            _logger.LogCritical($"An exception occurred while retrieving food items with name {name}.", ex);
             return StatusCode(500, "An error occurred while processing your request.");
         }
     }

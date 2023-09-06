@@ -22,9 +22,9 @@ public class NutritionService : INutritionService
     public async Task<Food> Get(string id) =>
        await _foodCollection.Find(food => food.Id == id).FirstOrDefaultAsync();
 
-    public async Task<ICollection<Food>> SearchFoodsByName(string foodName)
+    public async Task<ICollection<Food>> SearchFoodsByName(string name)
     {
-        var filter = Builders<Food>.Filter.Regex("FoodName", new BsonRegularExpression(foodName, "i"));
+        var filter = Builders<Food>.Filter.Regex("Name", new BsonRegularExpression(name, "i"));
         var foods = await _foodCollection.Find(filter).ToListAsync();
         return foods;
     }
