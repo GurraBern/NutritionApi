@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using NutritionApi.Models.Nutrition;
 
 namespace NutritionApi.Models;
 
@@ -10,13 +11,27 @@ public class Food
     public string? Id { get; set; }
 
     [BsonElement("Name")]
-    public string FoodName { get; set; } = null!;
+    public string Name { get; set; } = null!;
 
-    public int Kcal { get; set; }
+    public CreatorType CreatorType { get; set; }
 
-    public int Carbs { get; set; }
+    public string ServingSize { get; set; }
 
-    public int Protein { get; set; }
+    public double Calories { get; set; }
 
-    public int Fat { get; set; }
+    public double Protein { get; set; }
+
+    public Carbohydrates Carbohydrates { get; set; }
+
+    public Fats Fats { get; set; }
+
+    public Vitamins Vitamins { get; set; }
+
+    public Minerals Minerals { get; set; }
+
+    public FattyAcids FattyAcids { get; set; }
+
+    public AminoAcids AminoAcids { get; set; }
+
+    public OtherNutrients OtherNutrients { get; set; }
 }
