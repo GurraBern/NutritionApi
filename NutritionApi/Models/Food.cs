@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using NutritionApi.Models.Nutrition;
 
 namespace NutritionApi.Models;
 
@@ -11,6 +12,8 @@ public class Food
 
     [BsonElement("Name")]
     public string Name { get; set; } = null!;
+
+    public CreatorType CreatorType { get; set; }
 
     public string ServingSize { get; set; }
 

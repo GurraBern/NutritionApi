@@ -1,4 +1,4 @@
-﻿namespace NutritionApi.Models;
+﻿namespace NutritionApi.Models.Nutrition;
 
 public class Minerals
 {

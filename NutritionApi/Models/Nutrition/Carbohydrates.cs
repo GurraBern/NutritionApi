@@ -1,4 +1,4 @@
-﻿namespace NutritionApi.Models;
+﻿namespace NutritionApi.Models.Nutrition;
 
 public class Carbohydrates
 {
@@ -6,7 +6,7 @@ public class Carbohydrates
 
     public double Fiber { get; set; }
 
-    public double Sugars { get; set; }
+    public double Sugar { get; set; }
 
     public double Fructose { get; set; }
 
