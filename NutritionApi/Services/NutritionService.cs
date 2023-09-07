@@ -8,6 +8,7 @@ namespace NutritionApi.Services;
 public class NutritionService : INutritionService
 {
     private readonly IMongoCollection<Food>? _foodCollection;
+    private const int maxFoodsPageSize = 10;
 
     public NutritionService(IOptions<NutritionDatabaseSettings> nutritionDatabaseSettings)
     {
@@ -22,10 +23,16 @@ public class NutritionService : INutritionService
     public async Task<Food> Get(string id) =>
        await _foodCollection.Find(food => food.Id == id).FirstOrDefaultAsync();
 
-    public async Task<ICollection<Food>> SearchFoodsByName(string foodName)
+    public async Task<ICollection<Food>> SearchFoodsByName(string name, int pageNumber = 1, int pageSize = 10)
     {
-        var filter = Builders<Food>.Filter.Regex("FoodName", new BsonRegularExpression(foodName, "i"));
-        var foods = await _foodCollection.Find(filter).ToListAsync();
+        if (pageSize > maxFoodsPageSize)
+            pageSize = maxFoodsPageSize;
+
+        var filter = Builders<Food>.Filter.Regex("Name", new BsonRegularExpression(name, "i"));
+        var foods = await _foodCollection.Find(filter)
+            .Skip(pageSize * (pageNumber - 1))
+            .ToListAsync();
+
         return foods;
     }
 
