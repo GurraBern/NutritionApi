@@ -17,8 +17,15 @@ public class NutritionService : INutritionService
         _foodCollection = mongoDatabase.GetCollection<Food>(nutritionDatabaseSettings.Value.NutritionCollectionName);
     }
 
-    public async Task<IEnumerable<Food>> Get() =>
-        await _foodCollection.Find(_ => true).ToListAsync();
+    public async Task<IEnumerable<Food>> Get(int pageNumber, int pageSize)
+    {
+        var foods = await _foodCollection.Find(_ => true)
+            .Skip(pageSize * (pageNumber - 1))
+            .Limit(pageSize)
+            .ToListAsync();
+
+        return foods;
+    }
 
     public async Task<Food> Get(string id) =>
        await _foodCollection.Find(food => food.Id == id).FirstOrDefaultAsync();
@@ -31,6 +38,7 @@ public class NutritionService : INutritionService
         var filter = Builders<Food>.Filter.Regex("Name", new BsonRegularExpression(name, "i"));
         var foods = await _foodCollection.Find(filter)
             .Skip(pageSize * (pageNumber - 1))
+            .Limit(pageSize)
             .ToListAsync();
 
         return foods;
