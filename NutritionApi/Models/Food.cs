@@ -9,6 +9,8 @@ public class Food
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
 
+    public string? ExternalId { get; set; }
+
     [BsonElement("Name")]
     public string Name { get; set; } = null!;
 
@@ -107,6 +109,8 @@ public class Food
     public double Alanine { get; set; }
 
     public double Arginine { get; set; }
+
+    public double Asparagine { get; set; }
 
     public double AsparticAcid { get; set; }
 
