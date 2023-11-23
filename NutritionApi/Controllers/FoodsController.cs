@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NutritionApi.Models;
 using NutritionApi.Services;
 
 namespace NutritionApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class FoodController : ControllerBase
